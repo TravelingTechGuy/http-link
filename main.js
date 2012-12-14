@@ -128,7 +128,12 @@ httpLink.parse = function(value) {
     if (pos < value.length)
         throw new Error('Unexpected token: ' + pos);
     
-    return links;
+    //return an associative array of {rel:href *}
+    var result = {};
+    links.forEach(function(link){
+        result[link.rel] = link.href;
+    });
+    return result;
 };
 
 })(exports || (htmlLink = {}));
